@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "pm2": "node generate_pm2.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.0.1",
     "morgan": "~1.9.1",
     "openai": "^4.87.3"
   }

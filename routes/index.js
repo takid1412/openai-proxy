@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
           res.end(); // Close connection when done
         };
 
-        streamHandler();
+        void streamHandler();
       })
       .catch(err => {
         res.send(JSON.stringify({
