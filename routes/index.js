@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const OpenAI = require("openai");
 const debug = require('debug')('openai-proxy:index');
+require('dotenv').config();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
