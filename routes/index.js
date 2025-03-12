@@ -15,6 +15,7 @@ router.post('/', function(req, res, next) {
     apiKey: req.body.apiKey,
   });
   const start_time = performance.now();
+  debug('start time', start_time);
   client.chat.completions.create(JSON.parse(req.body.data))
       .then(function(data) {
         const answer = [];
