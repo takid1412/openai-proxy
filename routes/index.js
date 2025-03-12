@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const OpenAI = require("openai");
 const debug = require('debug')('openai-proxy:index');
-require('dotenv').config();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,7 +14,6 @@ router.post('/', function(req, res, next) {
     apiKey: req.body.apiKey,
   });
   const start_time = performance.now();
-  debug('start time', start_time);
   client.chat.completions.create(JSON.parse(req.body.data))
       .then(function(data) {
         const answer = [];
