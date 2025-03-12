@@ -21,7 +21,8 @@ router.post('/', function(req, res, next) {
           for await (const chunk of data) {
             const content = chunk.choices[0]?.delta?.content;
             if (content) {
-              debug(`[${performance.now() - start_time}ms] ${content}]`)
+              const time = (performance.now() - start_time)/1000
+              debug(`[${time.toFixed(3)}s] ${content}]`)
               answer.push(content); // Send each chunk
             }
           }
