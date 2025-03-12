@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
     baseURL: req.body.baseURL,
     apiKey: req.body.apiKey,
   });
-  client.chat.completions.create(req.body.data)
+  client.chat.completions.create(JSON.parse(req.body.data))
       .then(function(data) {
         const answer = [];
         const streamHandler = async () => {
