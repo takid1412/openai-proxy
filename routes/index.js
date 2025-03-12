@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const OpenAI = require("openai");
+const debug = require('debug')('openai-proxy:index');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,6 +13,7 @@ router.post('/', function(req, res, next) {
     baseURL: req.body.baseURL,
     apiKey: req.body.apiKey,
   });
+  const start_time = performance.now();
   client.chat.completions.create(JSON.parse(req.body.data))
       .then(function(data) {
         const answer = [];
@@ -19,6 +21,7 @@ router.post('/', function(req, res, next) {
           for await (const chunk of data) {
             const content = chunk.choices[0]?.delta?.content;
             if (content) {
+              debug(`[${performance.now() - start_time}ms] ${content}]`)
               answer.push(content); // Send each chunk
             }
           }
